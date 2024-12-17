@@ -15,6 +15,7 @@ fn is_dark_mode() -> bool {
 fn handle_write(mut stream: TcpStream) {
     let status_line = "HTTP/1.1 200 OK";
     let contents = if is_dark_mode() { "dark" } else { "light" };
+    eprintln!("Sending response: {}", contents);
     let length = contents.len();
 
     let response = format!("{status_line}\r\nContent-Length: {length}\r\n\r\n{contents}");
